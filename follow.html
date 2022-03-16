@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <img src="images/follow.gif">
+    <script>
+        const image = document.getElementsByTagName('img')[0];
+        document.addEventListener('mousemove', function(e) {
+            let x = e.pageX;
+            let y = e.pageY;
+            image.style.left = x  - 68 + 'px';
+            image.style.top = y - 49 + 'px';
+        });
+    </script>
+</body>
+</html>
