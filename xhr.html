@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <input type="button" value="按钮" id="btn">
+    <!-- <input type="button" value="请求" id="get">
+    <input type="button" value="提交" id="post">
     <script>
         const xhr = new XMLHttpRequest();
-        const btn = document.getElementById("btn");
-        btn.addEventListener("click", function(res) {
-            // xhr.open("get", "http://www.liulongbin.top:3006/api/getbooks",false);
+        const get = document.getElementById("get");
+        const post = document.getElementById("post");
+        get.addEventListener("click", function(res) {
+            xhr.open("get", "http://www.liulongbin.top:3006/api/getbooks",false);
             // xhr.open("get", "http://www.liulongbin.top:3006/api/getbooks?id=1",false);
-            // xhr.send(null);
+            xhr.send(null);
+            console.log(res);
+        })
+        post.addEventListener("click", function(res) {
             xhr.open("post", "http://www.liulongbin.top:3006/api/addbook", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.send("bookname=水浒传&author=施耐庵&publisher=天津图书出版社");    
             console.log(res);
         })
         
+    </script> -->
+    <script>
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', 'http://www.liulongbin.top:3006/api/getbooks');
+        xhr.send(null);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                    console.log(xhr.responseText);
+                }
+            }
+        }
     </script>
 </body>
+
 </html>
