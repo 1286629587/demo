@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="http://www.liulongbin.top:3006/api/upload/avatar">
+        <input type="file" id="file1"><br/>
+        <input type="button" value="上传文件" id="upload">
+        <br/>
+        <img src="" alt="上传成功显示的图片" id="img">
+    </form>
+    <script>
+        const upload = document.querySelector("#upload");
+        upload.addEventListener("click", function() {
+            const files = document.querySelector("#file1").files
+            const fd = new FormData();
+            for(let i = 0; i < files.length; i++) {
+                fd.append("file"+i, files[i]);
+            }
+            const xhr = new XMLHttpRequest();
+            xhr.open("post", "http://www.liulongbin.top:3006/api/upload/avatar");
+            xhr.send(fd);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if (xhr.status >=200 && xhr.status < 300 || xhr.status == 304) {
+                        const data = JSON.parse(xhr.responseText);
+                        if (data.status == 200) {
+                            document.querySelector("#img").src = "http://www.liulongbin.top:3006" + data.url;
+                        }
+                        else {
+                            console.log("文件上传失败" + data.message);
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

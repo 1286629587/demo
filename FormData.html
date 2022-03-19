@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section {
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <form action="url" id="form1">
+            <label for="uname">用户名称：<input type="text" id="uname"></label><br/>
+            <label for="upw">输入密码：<input type="password" id="upw"></label><br/>
+            <input type="submit" value="提交">
+        </form>
+    </section>
+    <script>
+        const form = document.querySelector('#form1');
+        form.addEventListener("submit", function(e) {
+		e.preventDefault();
+		const fd = new FormData(form);
+		const xhr = new XMLHttpRequest();
+		xhr.open("post", "url");
+		xhr.send(fd);
+		xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status >=200 && xhr.status < 300 || xhr.status == 304) {
+                    console.log(xhr.responseText);
+                }
+            }
+        }
+})
+    </script>
+</body>
+</html>
