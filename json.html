@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // JSON→JS对象
+        let jsonText = '{"title":"Professional JavaScript","authors":["Nicholas C. Zakas","Matt Frisbie"],"edition":4,"year":2017}'
+        let book = JSON.parse(jsonText);
+        console.log(book);
+        console.log(typeof book);
+        // JS对象→JSON
+        let jsonTextCopy = JSON.stringify(book);
+        console.log(jsonTextCopy);
+        console.log(typeof jsonTextCopy);
+    </script>
+</body>
+</html>
