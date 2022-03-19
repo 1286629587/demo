@@ -11,10 +11,12 @@
         <input type="file" id="file1"><br/>
         <input type="button" value="上传文件" id="upload">
         <br/>
+        <p id="pro"></p>
         <img src="" alt="上传成功显示的图片" id="img">
     </form>
     <script>
         const upload = document.querySelector("#upload");
+        const pro = document.querySelector("#pro");
         upload.addEventListener("click", function() {
             const files = document.querySelector("#file1").files
             const fd = new FormData();
@@ -22,6 +24,14 @@
                 fd.append("file"+i, files[i]);
             }
             const xhr = new XMLHttpRequest();
+            //监听文件上传进度
+            xhr.upload.onprogress = function(e) {
+                if (e.lengthComputable) {
+                    let procentComplete = Math.ceil((e.loaded / e.total) * 100);
+                    pro.innerHTML = procentComplete;
+                    // console.log(procentComplete);
+                }
+            }
             xhr.open("post", "http://www.liulongbin.top:3006/api/upload/avatar");
             xhr.send(fd);
             xhr.onreadystatechange = function() {
