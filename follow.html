@@ -16,11 +16,22 @@
     <img src="images/follow.gif">
     <script>
         const image = document.getElementsByTagName('img')[0];
+        //预定义一个节流阀
+        let timer = null;
         document.addEventListener('mousemove', function(e) {
             let x = e.pageX;
             let y = e.pageY;
-            image.style.left = x  - 68 + 'px';
-            image.style.top = y - 49 + 'px';
+            //判断节流阀是否为空
+            if (!timer) {
+                timer = setTimeout(function() {
+                    image.style.left = x  - 68 + 'px';
+                    image.style.top = y - 49 + 'px';
+                    timer = null;//清空节流阀，方便下次开启延时器
+                }, 30);    
+            }
+            else {
+                return;
+            }    
         });
     </script>
 </body>
