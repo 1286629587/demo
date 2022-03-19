@@ -7,7 +7,26 @@
     <title>Document</title>
 </head>
 <body>
+    <input type="text" id="search">
     <script>
+        const search = document.querySelector("#search");
+        //延时器id
+        let timer = null;
+        //防抖函数
+        function debounce(value) {
+            //定时器，延时1000ms触发
+            timer = setTimeout(function(){
+                console.log(value);
+            }, 1000)
+        }
+        search.addEventListener("keyup", function(e) {
+            //清除计时器
+            clearTimeout(timer);
+            // console.log(e.key);
+            // console.log(e.target.value);
+            //继续进入防抖
+            debounce(e.target.value);
+        })
         function success(data) {
             console.log("拿到数据了，在这儿：");
             console.log(data);
