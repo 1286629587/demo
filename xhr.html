@@ -9,17 +9,24 @@
 </head>
 
 <body>
-    <!-- <input type="button" value="请求" id="get">
+    <input type="button" value="请求" id="get">
     <input type="button" value="提交" id="post">
     <script>
         const xhr = new XMLHttpRequest();
         const get = document.getElementById("get");
         const post = document.getElementById("post");
         get.addEventListener("click", function(res) {
-            xhr.open("get", "http://www.liulongbin.top:3006/api/getbooks",false);
-            // xhr.open("get", "http://www.liulongbin.top:3006/api/getbooks?id=1",false);
+            xhr.open("get", "http://www.liulongbin.top:3006/api/getbooks");
+            // xhr.open("get", "http://www.liulongbin.top:3006/api/getbooks?id=1");
             xhr.send(null);
-            console.log(res);
+            // console.log(res);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                        console.log(xhr.responseText);
+                    }
+                }
+            }   
         })
         post.addEventListener("click", function(res) {
             xhr.open("post", "http://www.liulongbin.top:3006/api/addbook", true);
@@ -28,18 +35,6 @@
             console.log(res);
         })
         
-    </script> -->
-    <script>
-        const xhr = new XMLHttpRequest();
-        xhr.open('get', 'http://www.liulongbin.top:3006/api/getbooks');
-        xhr.send(null);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
-                    console.log(xhr.responseText);
-                }
-            }
-        }
     </script>
 </body>
 
