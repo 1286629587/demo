@@ -2,7 +2,7 @@
 ```
 npm install hongzida-tools
 ```
-
+## 注意：已从服务器删除，找不到的
 ## 导入
 ```js
 const hongzida = require('hongzida-tools')
